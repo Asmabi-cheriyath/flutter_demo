@@ -1,20 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/add_student.dart';
+import 'package:flutter_demo/add_staff.dart';
 import 'package:flutter_demo/provider.dart';
 import 'package:provider/provider.dart';
 
-class Student extends StatelessWidget {
-  const Student({super.key});
+class Staff extends StatefulWidget {
+  const Staff({super.key});
 
+  @override
+  State<Staff> createState() => _StaffState();
+}
+
+class _StaffState extends State<Staff> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("STUDENTS"),
+        title: const Text("STAFF"),
       ),
       body: Consumer<MainProvider>(builder: (context, value, child) {
         return ListView.builder(
-            itemCount: value.studentlist.length,
+            itemCount: value.stafflist.length,
             itemBuilder: ((context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -30,7 +36,7 @@ class Student extends StatelessWidget {
                           Row(
                             children: [
                               const Text("Name : "),
-                              Text(value.studentlist[index].name),
+                              Text(value.stafflist[index].name3),
                             ],
                           ),
                           const SizedBox(
@@ -38,31 +44,27 @@ class Student extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              const Text("Phone Number : "),
-                              Text(value.studentlist[index].phone),
-
+                              const Text("Job : "),
+                              Text(value.stafflist[index].job),
                               Spacer(),
-
                               IconButton(
-                              onPressed: () {
-                                value.editStudent(value.studentlist[index].id);
-
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => AddStudents(
-                                        id: value.studentlist[index].id,
-                                        todo: "edit")));
-                              },
-                              icon: const Icon(Icons.edit)),
+                                  onPressed: () {
+                                    value.editStaff(value.stafflist[index].id);
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => AddStaff(
+                                                id: value.stafflist[index].id,
+                                                todo: "edit")));
+                                  },
+                                  icon: const Icon(Icons.edit)),
                               IconButton(
-                              onPressed: () {
-                                value.deleteStudent(
-                                    value.studentlist[index].id, context);
-                              },
-                              icon: const Icon(Icons.delete))
+                                  onPressed: () {
+                                    value.deleteStaff(
+                                        value.stafflist[index].id, context);
+                                  },
+                                  icon: const Icon(Icons.delete))
                             ],
                           ),
-                          
-                          
                         ],
                       ),
                     )),
@@ -71,9 +73,9 @@ class Student extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton(onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => AddStudents(
+            builder: (context) => AddStaff(
                   id: '',
-                  todo: 'New',
+                  todo: 'new',
                 )));
       }),
     );

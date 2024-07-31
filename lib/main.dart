@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/Provider.dart';
-import 'package:flutter_demo/Students.dart';
 import 'package:flutter_demo/firebase_options.dart';
-import 'package:flutter_demo/AddStudent.dart';
+import 'package:flutter_demo/homepage.dart';
+import 'package:flutter_demo/provider.dart';
 import 'package:provider/provider.dart';
+
+
+
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const Student(),
+        home: const HomePage(),
       ),
     );
   }
